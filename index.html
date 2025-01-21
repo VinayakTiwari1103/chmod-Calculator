@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chmod Octal Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000000;
+        }
+
+        .container {
+            flex: 1;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #ffffff;
+            background-color: #000000;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .permission-group {
+            margin-bottom: 15px;
+            border: 1px solid #000000;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .permission-group h2 {
+            margin-bottom: 5px;
+            color: #000000;
+        }
+
+        .permission {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #chmodResult {
+            margin-top: 18px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 10px;
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chmod Octal Calculator</h1>
+        <form id="chmodForm">
+            <div class="permission-group">
+                <h2>Owner</h2>
+                <label><input type="checkbox" id="ownerRead" class="permission" checked> Read</label>
+                <label><input type="checkbox" id="ownerWrite" class="permission" checked> Write</label>
+                <label><input type="checkbox" id="ownerExecute" class="permission" checked> Execute</label>
+            </div>
+
+            <div class="permission-group">
+                <h2>Group</h2>
+                <label><input type="checkbox" id="groupRead" class="permission" checked> Read</label>
+                <label><input type="checkbox" id="groupWrite" class="permission" checked> Write</label>
+                <label><input type="checkbox" id="groupExecute" class="permission" checked> Execute</label>
+            </div>
+
+            <div class="permission-group">
+                <h2>Other</h2>
+                <label><input type="checkbox" id="otherRead" class="permission" checked> Read</label>
+                <label><input type="checkbox" id="otherWrite" class="permission" checked> Write</label>
+                <label><input type="checkbox" id="otherExecute" class="permission" checked> Execute</label>
+            </div>
+
+            <button type="button" id="calculateBtn">Calculate Octal Notation</button>
+        </form>
+
+        <div id="chmodResult">Chmod Value: <span id="resultValue"></span></div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Chmod Octal Calculator | Connect on LinkedIn: <a href="https://www.linkedin.com/in/piyushbagani" target="_blank">Piyush Bagani</a></p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('calculateBtn').addEventListener('click', calculateChmod);
+        });
+
+        function calculateChmod() {
+            const ownerRead = document.getElementById("ownerRead").checked ? 4 : 0;
+            const ownerWrite = document.getElementById("ownerWrite").checked ? 2 : 0;
+            const ownerExecute = document.getElementById("ownerExecute").checked ? 1 : 0;
+            const groupRead = document.getElementById("groupRead").checked ? 4 : 0;
+            const groupWrite = document.getElementById("groupWrite").checked ? 2 : 0;
+            const groupExecute = document.getElementById("groupExecute").checked ? 1 : 0;
+            const otherRead = document.getElementById("otherRead").checked ? 4 : 0;
+            const otherWrite = document.getElementById("otherWrite").checked ? 2 : 0;
+            const otherExecute = document.getElementById("otherExecute").checked ? 1 : 0;
+            const chmodValue = `${ownerRead + ownerWrite + ownerExecute}${groupRead + groupWrite + groupExecute}${otherRead + otherWrite + otherExecute}`;
+            document.getElementById("resultValue").innerText = chmodValue;
+        }
+    </script>
+</body>
+</html>
+

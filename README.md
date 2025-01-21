@@ -1,4 +1,4 @@
-Here is the link to access the online chmod calculator: [Online Chmod Calculator](http://chmd-octal-notations.s3-website.ap-south-1.amazonaws.com/)
+
 
 
 ## Online Chmod Calculator
